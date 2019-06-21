@@ -8,6 +8,7 @@ services:
       - 80:80
     volumes:
       - ~/java/springboot/springboot-redis-todo-app:/usr/src/app
+      - /usr/src/app/target
     networks:
       - spring-boot-redis-todo-app-network
     depends_on:

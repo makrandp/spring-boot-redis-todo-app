@@ -1,6 +1,6 @@
 FROM openjdk:8-jdk-alpine
 
-RUN apk add --no-cache curl tar bash supervisor
+RUN apk add --no-cache curl tar bash supervisor nginx
 
 ARG MAVEN_VERSION=3.3.9
 ARG USER_HOME_DIR="/root"
@@ -15,6 +15,9 @@ ENV MAVEN_CONFIG "$USER_HOME_DIR/.m2"
 ENV MAVEN_OPTS="-XX:+TieredCompilation -XX:TieredStopAtLevel=1"
 
 #ENTRYPOINT ["/usr/bin/mvn"]
+
+# Configure nginx
+COPY config/nginx.conf /etc/nginx/nginx.conf
 
 # make source folder
 RUN mkdir -p /usr/src/app
